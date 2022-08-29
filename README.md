@@ -1,6 +1,7 @@
 # splinelib for C++
 C++ library for dealing with Spline curve.
-This library is assumed that which is compiled by catkin(ROS).
+This library is ROS package.
+It required to be compiled by catkin(ROS).
 
 # Depends
 * Catkin
