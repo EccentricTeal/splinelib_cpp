@@ -46,6 +46,7 @@ namespace splinelib
       void setKnotVector( std::vector<double>& new_kv );
       NurbsError evalCurveData( void );
       Eigen::Vector3d getPointOnCurve( double t );
+      Eigen::Vector3d getDifferential( double t );
     
     /** Private Methods **/
     private:

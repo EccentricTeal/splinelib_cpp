@@ -67,6 +67,29 @@ namespace splinelib
   }
 
 
+  Eigen::Vector3d NurbsData::getDifferential( double t )
+  {
+    double l = getKnotSectionBeginNum( t );
+    uint16_t n = nurbs_dimension_;
+
+    double w1 = calcW( t, l-1, n-1 );
+    double w2 = calcW( t, l, n-1 );
+    double w3 = calcW( t, l, n );
+    Eigen::Vector3d wP1 = calcwP( t, l-1, n-1 );
+    Eigen::Vector3d wP2 = calcwP( t, l, n-1 );
+
+    Eigen::Vector3d diff;
+    if( w3 != 0.0 )
+    {
+      diff = 
+        ( n * w1 * w2 / ( w3 * w3 ) ) *
+        ( ( ( wP1 / w1 ) - ( wP2 / w2 ) ) / ( knot_vector_[l+1] - knot_vector_[l] ) );
+    }
+
+    return diff;
+  }
+
+
   uint16_t NurbsData::getKnotSectionBeginNum( double t )
   {
     uint16_t vector_position = 0;
